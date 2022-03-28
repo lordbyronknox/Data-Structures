@@ -1,3 +1,4 @@
+
 // We’ll start our definition of the Dictionary class with this code:
 function Dictionary() {
     this.datastore = new Array();
@@ -26,7 +27,7 @@ function remove(key) {
 //Finally, we’d like to be able to view all the key-value pairs in a dictionary, so here
 // is a function that accomplishes this task:
 function showAll() {
-    for each(var key in Object.keys(this.datastore)) {
+    for (const key of Object.keys(this.datastore)) {
         print(key + " -> " + this.datastore[key]);
     }
 }
@@ -51,7 +52,129 @@ function remove(key) {
     delete this.datastore[key];
 }
 function showAll() {
-    foreach(var key in Object.keys(this.datastore)) {
+    for (const key of Object.keys(this.datastore))
+        console.log(key + " -> " + this.datastore[key]);
+}
+
+
+var pbook = new Dictionary();
+pbook.add("Mike", "123");
+pbook.add("David", "345");
+pbook.add("Cynthia", "456");
+console.log("David's extension: " + pbook.find("David"));
+pbook.remove("David");
+pbook.showAll();
+
+
+
+
+////////////////////Auxiliary Functions for the Dictionary Class///////
+
+//We can define several functions that can help in special situations. For example, it is
+//nice to know how many entries there are in a dictionary. Here is a count() function
+//definition:
+function count() {
+    var n = 0;
+    for (var key in Object.keys(this.datastore)) {
+        ++n;
+    }
+    return n;
+}
+
+//You might be wondering why the length property wasn’t used for the count() function.
+//The reason is that length doesn’t work with string keys. For example:
+var nums = new Array();
+nums[0] = 1;
+nums[1] = 2;
+console.log(nums.length); // displays 2
+
+
+var pbook = new Array();
+pbook["David"] = 1;
+pbook["Jennifer"] = 2;
+console.log(pbook.length); // displays 0
+
+
+//Another helper function we can use is a clear() function. Here’s the definition:
+function clear() {
+    for (var key of Object.keys(this.datastore)) {
+        delete this.datastore[key];
+    }
+}
+
+
+//Example 7-3. Updated Dictionary class definition
+function Dictionary() {
+    this.add = add;
+    this.datastore = new Array();
+    this.find = find;
+    this.remove = remove;
+    this.showAll = showAll;
+    this.count = count;
+    this.clear = clear;
+}
+
+function add(key, value) {
+    this.datastore[key] = value;
+}
+
+function find(key) {
+    return this.datastore[key];
+}
+
+function remove(key) {
+    delete this.datastore[key];
+}
+
+function showAll() {
+    for (var key of Object.keys(this.datastore)) {
         console.log(key + " -> " + this.datastore[key]);
     }
 }
+
+function count() {
+    var n = 0;
+    for (var key of Object.keys(this.datastore)) {
+        ++n;
+    }
+    return n;
+}
+
+function clear() {
+    for (var key of Object.keys(this.datastore)) {
+        delete this.datastore[key];
+    }
+}
+
+
+
+//Example 7-4 illustrates how these new auxiliary functions work.
+//Example 7-4. Using the count() and clear() functions
+function myFunction () {
+var pbook = new Dictionary();
+pbook.add("Raymond", "123");
+pbook.add("David", "345");
+pbook.add("Cynthia", "456");
+console.log("Number of entries: " + pbook.count());
+console.log("David's extension: " + pbook.find("David"));
+pbook.showAll();
+pbook.clear();
+console.log("Number of entries: " + pbook.count());
+}
+
+
+//Adding Sorting to the Dictionary Class
+var a = new Array();
+a[0] = "Mike";
+a[1] = "David";
+console.log(a); // displays Mike,David
+a.sort();
+console.log(a); // displays David,Mike
+
+function showAll() {
+    for (var key of Object.keys(this.datastore).sort()) {
+    console.log(key + " -> " + this.datastore[key]);
+    }
+   }
+
+
