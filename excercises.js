@@ -130,14 +130,92 @@ Write a function that inserts an element into a list only if the element to be i
 is larger than any of the elements currently in the list. Larger can mean either greater
 than when working with numeric values, or further down in the alphabet, when
 working with textual values.    */
+function myList() {
+    this.dataStore = [];
+    this.listSize = 0;
+    this.length = length;
+    this.add = add;
+    this.insert = insert;
+    this.toString = toString
+    };
 
+function length() {
+    return this.listSize;
+}
+
+function add(element) {
+    this.dataStore[this.listSize++] = element;
+}
+
+function insert(element) {
+    for (i = 0; i < this.dataStore.listSize; ++i) {
+        if (this.dataStore[i] < element){
+            this.add(element);
+            break
+        }
+    }
+}
+
+function toString() {
+    return this.dataStore;
+}
+
+var numbers = new myList()
+numbers.add(1);
+numbers.add(10);
+numbers.add(39);
+numbers.add(3);
+numbers.add(14);
+
+numbers.insert(200)
+
+console.log(numbers.toString())
 
 
 /*
 3.2 
 Write a function that inserts an element into a list only if the element to be inserted
 is smaller than any of the elements currently in the list.  */
+function myList() {
+    this.dataStore = [];
+    this.listSize = 0;
+    this.length = length;
+    this.add = add;
+    this.insert = insert;
+    this.toString = toString
+    };
 
+function length() {
+    return this.listSize;
+}
+
+function add(element) {
+    this.dataStore[this.listSize++] = element;
+}
+
+function insert(element) {
+    for (i = 0; i < this.dataStore.listSize; ++i) {
+        if (this.dataStore[i] < element){
+            this.add(element);
+            break
+        }
+    }
+}
+
+function toString() {
+    return this.dataStore;
+}
+
+var numbers = new myList()
+numbers.add(1);
+numbers.add(10);
+numbers.add(39);
+numbers.add(3);
+numbers.add(14);
+
+numbers.insert(50);
+
+console.log(numbers.toString())
 
 /*
 3.3 
@@ -145,29 +223,362 @@ Create a Person class that stores a person’s name and their gender. Create a l
 at least 10 Person objects. Write a function that displays all the people in the list of
 the same gender.    */
 
+function people(name, gender) {
+    this.name = name;
+    this.gender = gender;
+    this.dataStore = [];
+    this.listSize = 0;
+    this.length = length;
+    this.add = add;
+    this.insert = insert;
+    this.toString = toString
+    this.menOrWomen = menOrWomen;
+    };
+
+function length() {
+    return this.listSize;
+}
+
+function add(element1, element2) {
+    this.dataStore[this.listSize++] = [element1, element2];
+}
+
+function insert(element) {
+    for (i = 0; i < this.dataStore.listSize; ++i) {
+        if (this.dataStore[i] < element){
+            this.add(element);
+            break
+        }
+    }
+}
+
+function toString() {
+    return this.dataStore;
+}
+
+function menOrWomen (sex) {
+    if (sex == 'M') {
+        console.log(men.toString());
+    }
+    else
+    console.log(women.toString());
+}
+
+var men = new people();
+var women = new people();
+men.add("Adrian", 'M');
+men.add("Jake", 'M');
+men.add("Dan", "Brown");
+men.add("Philip", 'M');
+men.add("Erick", 'M');
+men.add("Zane", "M");
+women.add("Anna", "F");
+women.add("Jen", "F");
+women.add("Becky", 'F')
+women.add("Cathy", "F");
+
+menOrWomen('M');
+menOrWomen('F')
+
+
+
+
 /*
 3.4
 Modify the video-rental kiosk program so that when a movie is checked out it is
 added to a list of rented movies. Display this list whenever a customer checks out
 a movie.    */
+var movies = ['The Shawshank Redemption', 'The Godfather', 'The Godfather: Part II',
+    'Pulp Fiction', 'The Good, the Bad and the Ugly', '12 Angry Men', 'Schindler’s List',
+    'The Dark Knight', 'The Lord of the Rings: The Return of the King',
+    'Fight Club', 'Star Wars: Episode V - The Empire Strikes Back',
+    'One Flew Over the Cuckoo’s Nest', 'The Lord of the Rings: The Fellowship of the Ring',
+    'Inception', 'Goodfellas', 'Star Wars', 'Seven Samurai', 'The Matrix', 'Forrest Gump',
+    'City of God'];
+function List() {
+    this.listSize = 0;
+    this.pos = 0;
+    this.dataStore = []; // initializes an empty array to store list elements
+    this.clear = clear;
+    this.find = find;
+    this.toString = toString;
+    this.insert = insert;
+    this.append = append;
+    this.remove = remove;
+    this.front = front;
+    this.end = end;
+    this.prev = prev;
+    this.next = next;
+    this.length = length;
+    this.currPos = currPos;
+    this.moveTo = moveTo;
+    this.getElement = getElement;
+    this.length = length;
+    this.contains = contains;
+}
+function append(element) {
+    this.dataStore[this.listSize++] = element;
+}
+function find(element) {
+    for (var i = 0; i < this.dataStore.length; ++i) {
+        if (this.dataStore[i] == element) {
+            return i;
+        }
+    }
+    return -1;
+}
+function remove(element) {
+    var foundAt = this.find(element);
+    if (foundAt > -1) {
+        this.dataStore.splice(foundAt, 1);
+        --this.listSize;
+        return true;
+    }
+    return false;
+}
+function length() {
+    return this.listSize;
+}
+function toString() {
+    return this.dataStore;
+}
+function insert(element, after) {
+    var insertPos = this.find(after);
+    if (insertPos > -1) {
+        this.dataStore.splice(insertPos + 1, 0, element);
+        ++this.listSize;
+        return true;
+    }
+    return false;
+}
+function clear() {
+    delete this.dataStore;
+    this.dataStore = [];
+    this.listSize = this.pos = 0;
+}
+function contains(element) {
+    for (var i = 0; i < this.dataStore.length; ++i) {
+        if (this.dataStore[i] == element) {
+            return true;
+        }
+    }
+    return false;
+}
+function front() {
+    this.pos = 0;
+}
+function end() {
+    this.pos = this.listSize - 1;
+}
+function prev() {
+    if (this.pos > 0) {
+        --this.pos;
+    }
+}
+function next() {
+    if (this.pos < this.listSize - 1) {
+        ++this.pos;
+    }
+}
+function currPos() {
+    return this.pos;
+}
+function moveTo(position) {
+    this.pos = position;
+}
+function getElement() {
+    return this.dataStore[this.pos];
+}
+function checkOut(movieName) {
+        if (availableMovies.contains(movieName)) {
+            rentedMovies.append(movieName);
+            availableMovies.remove(movieName);
+            console.log(movieName + " is rented out.");
+        }else{
+            console.log(movieName + " is not available.");
+        }
+}
 
+var availableMovies = new List();
+for (var i = 0; i < movies.length; i++) {
+    availableMovies.append(movies[i]);
+}
+var rentedMovies = new List();
+function run() {
+    checkOut("12 Angry Men");
+
+}
 
 /*
 3.5
 Create a check-in function for the video-rental kiosk program so that a returned
 movies is deleted from the rented movies list and is added back to the available
 movies list */
+var movies = ['The Shawshank Redemption', 'The Godfather', 'The Godfather: Part II',
+    'Pulp Fiction', 'The Good, the Bad and the Ugly', '12 Angry Men', 'Schindler’s List',
+    'The Dark Knight', 'The Lord of the Rings: The Return of the King',
+    'Fight Club', 'Star Wars: Episode V - The Empire Strikes Back',
+    'One Flew Over the Cuckoo’s Nest', 'The Lord of the Rings: The Fellowship of the Ring',
+    'Inception', 'Goodfellas', 'Star Wars', 'Seven Samurai', 'The Matrix', 'Forrest Gump',
+    'City of God'];
+function List() {
+    this.listSize = 0;
+    this.pos = 0;
+    this.dataStore = []; // initializes an empty array to store list elements
+    this.clear = clear;
+    this.find = find;
+    this.toString = toString;
+    this.insert = insert;
+    this.append = append;
+    this.remove = remove;
+    this.front = front;
+    this.end = end;
+    this.prev = prev;
+    this.next = next;
+    this.length = length;
+    this.currPos = currPos;
+    this.moveTo = moveTo;
+    this.getElement = getElement;
+    this.length = length;
+    this.contains = contains;
+}
+function append(element) {
+    this.dataStore[this.listSize++] = element;
+}
+function find(element) {
+    for (var i = 0; i < this.dataStore.length; ++i) {
+        if (this.dataStore[i] == element) {
+            return i;
+        }
+    }
+    return -1;
+}
+function remove(element) {
+    var foundAt = this.find(element);
+    if (foundAt > -1) {
+        this.dataStore.splice(foundAt, 1);
+        --this.listSize;
+        return true;
+    }
+    return false;
+}
+function length() {
+    return this.listSize;
+}
+function toString() {
+    return this.dataStore;
+}
+function insert(element, after) {
+    var insertPos = this.find(after);
+    if (insertPos > -1) {
+        this.dataStore.splice(insertPos + 1, 0, element);
+        ++this.listSize;
+        return true;
+    }
+    return false;
+}
+function clear() {
+    delete this.dataStore;
+    this.dataStore = [];
+    this.listSize = this.pos = 0;
+}
+function contains(element) {
+    for (var i = 0; i < this.dataStore.length; ++i) {
+        if (this.dataStore[i] == element) {
+            return true;
+        }
+    }
+    return false;
+}
+function front() {
+    this.pos = 0;
+}
+function end() {
+    this.pos = this.listSize - 1;
+}
+function prev() {
+    if (this.pos > 0) {
+        --this.pos;
+    }
+}
+function next() {
+    if (this.pos < this.listSize - 1) {
+        ++this.pos;
+    }
+}
+function currPos() {
+    return this.pos;
+}
+function moveTo(position) {
+    this.pos = position;
+}
+function getElement() {
+    return this.dataStore[this.pos];
+}
+//3_4
+function checkOut(movieName) {
+        if (availableMovies.contains(movieName)) {
+            rentedMovies.append(movieName);
+            availableMovies.remove(movieName);
+            console.log(movieName + " is rented out.");
+        }else{
+            console.log(movieName + " is not available.");
+        }
+}
+//3_5
+function returnMovie(movieName) {
+    if (rentedMovies.contains(movieName)) {
+        availableMovies.append(movieName);
+        rentedMovies.remove(movieName);
+        console.log(movieName + " was returned.");
+    }else{
+        console.log("Sorry, the film " + movieName + " is not ours.");
+    }
+}
+
+var availableMovies = new List();
+for (var i = 0; i < movies.length; i++) {
+    availableMovies.append(movies[i]);
+}
+var rentedMovies = new List();
+
+function run() {
+    checkOut("12 Angry Men");
+    returnMovie("12 Angry Men");
+}
 
 
+/***************************************************************************************/
 
+/* CHAPTER 4
+
+1. A stack can be used to ensure that an arithmetic expression has balanced paren‐
+theses. Write a function that takes an arithmetic expression as an argument and
+returns the postion in the expression where a parenthesis is missing. An example
+of an arithmetic expression with unbalanced parentheses is 2.3 + 23 / 12 + (3.14159
+* .24.
+
+
+2. A postfix expression evaluator works on arithmetic expressions taking the following
+form:
+op1 op2 operator
+Using two stacks—one for the operands and one for the operators—design and
+implement a JavaScript function that converts infix expressions to postfix expres‐
+sions, and then use the stacks to evaluate the expression.
+
+
+3. An example of a real-world stack is a Pez dispenser. Imagine that your virtual Pez
+dispenser is filled with red, yellow, and white colors and you don’t like the yellow
+ones. Write a program that uses a stack (and maybe more than one) to remove the
+yellow ones without changing the order of the other candies in the dispenser. */
 
 
 
 
 /***************************************************************************************/
-/* CHAPTER 6
 
-/* 
+/* CHAPTER 5
+
 1. Modify the Queue class to create a Deque class. A deque is a queue-like structure
 that allows elements to be added and removed from both the front and the back of
 the list. Test your class in a program.
@@ -187,10 +598,7 @@ ED. Create a menu system that allows the user to choose from the following activ
 ities:
 a. Patient enters ED.
 b. Patient is seen by doctor.
-c. Display list of patients waiting to be seen.  */
-
-
-
+c. Display list of patients waiting to be seen. 
 
 
 
@@ -200,21 +608,16 @@ c. Display list of patients waiting to be seen.  */
 1. Implement the advance(n) function so that when executed, the current node is
 moved n nodes forward in the list.
 
-
 2. Implement the back(n) function so that when executed, the current node is moved
 n spaces backward in the list.
-
 
 3. Implement the show() function, which displays the data associated with the current
 node.
 
-
 4. Write a program that uses a singly linked list to keep track of a set of test grades
 entered interactively into the program.
 
-
 5. Rewrite your solution to Example 6-4 using a doubly linked list.
-
 
 6. According to legend, the first-century Jewish historian Flavius Josephus was about
 to be captured along with a band of 40 compatriots by Roman soldiers during the
@@ -225,4 +628,43 @@ wanted no part of this and quickly calculated where they needed to place themsel
 so they would be the last survivors. Write a program that allows you to place n
 people in a circle and specify that every mth person will be killed. The program
 should determine the number of the last two people left in the circle. Use a circularly
-linked list to solve the problem.  */
+linked list to solve the problem. 
+
+
+
+
+
+
+/***************************************************************************************/
+/* CHAPTER 7
+
+1. Write a program that takes a set of names and phone numbers from a text file and
+stores them in a Dictionary object. Include in your program the ability to display
+one phone number, display all phone numbers, add new phone numbers, remove
+phone numbers, and clear out the list of numbers.
+
+2. Using the Dictionary class, write a program that stores the number of occurrences
+of words in a text. Your program should display each word in a text just once as
+well as the number of times the word occurs in the text. For example, given the text
+“the brown fox jumped over the blue fox,” the output will be:
+the: 2
+brown: 1
+fox: 2
+jumped: 1
+over: 1
+blue: 1
+
+3. Rewrite exercise 2 so that it displays the words in sorted order.
+
+/***************************************************************************************/
+/* CHAPTER 8
+
+1. Use linear probing to create a simple dictionary to store the definitions of words.
+Your program should have two parts. The first part reads a text file that contains a
+list of words and definitions and stores them in a hash table. The second part of the
+program allows a user to enter a word and see the definition of that word.
+
+2. Repeat exercise 1 using separate chaining.
+
+3. Write a program using hashing that reads a text file and compiles a list of the words
+in the file with the number of times each word appears in the file. */
