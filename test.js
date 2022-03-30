@@ -185,10 +185,10 @@ class BST {
         }
     }
 
-    postOrder() {
-        if (this.root == null) {
-            return null;
-        } else {
+    postOrder() {       //starts with the left branch, starts populating the array
+        if (this.root == null) {        //with the leaves (last node), then works it's 
+            return null;                //way up the branch, then starts on bottom of
+        } else {                        //right branch.
             var result = new Array();
             function traversePostOrder(node) {
                 node.left && traversePostOrder(node.left);
@@ -199,7 +199,7 @@ class BST {
             return result;
         }
     }
-
+//takes the values... level by level.
     levelOrder() {
         let result = [];
         let Q = [];
@@ -222,7 +222,7 @@ class BST {
     }
 }
 
-function run() {
+//function run() {
     const bst = new BST();
 
     bst.add(9);
@@ -245,6 +245,6 @@ function run() {
     console.log("inOrder: " + bst.inOrder());
     console.log("preOrder: " + bst.preOrder());
     console.log("postOrder: " + bst.postOrder());
-
     console.log("levelOrder: " + bst.levelOrder());
-}
+    console.log(bst.left)
+//}

@@ -137,7 +137,7 @@ function myList() {
     this.add = add;
     this.insert = insert;
     this.toString = toString
-    };
+};
 
 function length() {
     return this.listSize;
@@ -149,17 +149,19 @@ function add(element) {
 
 function insert(element) {
     for (i = 0; i < this.dataStore.listSize; ++i) {
-        if (this.dataStore[i] < element){
-            this.add(element);
-            break
+        if (this.dataStore[i] < element) {
+            this.dataStore[this.listSize++] = element;
         }
+        break
     }
 }
+
 
 function toString() {
     return this.dataStore;
 }
 
+function run() {
 var numbers = new myList()
 numbers.add(1);
 numbers.add(10);
@@ -170,6 +172,7 @@ numbers.add(14);
 numbers.insert(200)
 
 console.log(numbers.toString())
+}
 
 
 /*
@@ -183,7 +186,7 @@ function myList() {
     this.add = add;
     this.insert = insert;
     this.toString = toString
-    };
+};
 
 function length() {
     return this.listSize;
@@ -195,7 +198,7 @@ function add(element) {
 
 function insert(element) {
     for (i = 0; i < this.dataStore.listSize; ++i) {
-        if (this.dataStore[i] < element){
+        if (this.dataStore[i] < element) {
             this.add(element);
             break
         }
@@ -233,7 +236,7 @@ function people(name, gender) {
     this.insert = insert;
     this.toString = toString
     this.menOrWomen = menOrWomen;
-    };
+};
 
 function length() {
     return this.listSize;
@@ -245,7 +248,7 @@ function add(element1, element2) {
 
 function insert(element) {
     for (i = 0; i < this.dataStore.listSize; ++i) {
-        if (this.dataStore[i] < element){
+        if (this.dataStore[i] < element) {
             this.add(element);
             break
         }
@@ -256,12 +259,12 @@ function toString() {
     return this.dataStore;
 }
 
-function menOrWomen (sex) {
+function menOrWomen(sex) {
     if (sex == 'M') {
         console.log(men.toString());
     }
     else
-    console.log(women.toString());
+        console.log(women.toString());
 }
 
 var men = new people();
@@ -390,13 +393,13 @@ function getElement() {
     return this.dataStore[this.pos];
 }
 function checkOut(movieName) {
-        if (availableMovies.contains(movieName)) {
-            rentedMovies.append(movieName);
-            availableMovies.remove(movieName);
-            console.log(movieName + " is rented out.");
-        }else{
-            console.log(movieName + " is not available.");
-        }
+    if (availableMovies.contains(movieName)) {
+        rentedMovies.append(movieName);
+        availableMovies.remove(movieName);
+        console.log(movieName + " is rented out.");
+    } else {
+        console.log(movieName + " is not available.");
+    }
 }
 
 var availableMovies = new List();
@@ -517,13 +520,13 @@ function getElement() {
 }
 //3_4
 function checkOut(movieName) {
-        if (availableMovies.contains(movieName)) {
-            rentedMovies.append(movieName);
-            availableMovies.remove(movieName);
-            console.log(movieName + " is rented out.");
-        }else{
-            console.log(movieName + " is not available.");
-        }
+    if (availableMovies.contains(movieName)) {
+        rentedMovies.append(movieName);
+        availableMovies.remove(movieName);
+        console.log(movieName + " is rented out.");
+    } else {
+        console.log(movieName + " is not available.");
+    }
 }
 //3_5
 function returnMovie(movieName) {
@@ -531,7 +534,7 @@ function returnMovie(movieName) {
         availableMovies.append(movieName);
         rentedMovies.remove(movieName);
         console.log(movieName + " was returned.");
-    }else{
+    } else {
         console.log("Sorry, the film " + movieName + " is not ours.");
     }
 }
