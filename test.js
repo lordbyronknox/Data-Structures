@@ -169,7 +169,7 @@ class BST {
             return result;
         }
     }
-
+//starts working down the branches from left most... and works its way to the right.
     preOrder() {
         if (this.root == null) {
             return null;
