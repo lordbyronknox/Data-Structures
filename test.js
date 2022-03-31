@@ -18,11 +18,13 @@ function Graph(v) {
     this.hasPathTo = hasPathTo;
     this.pathTo = pathTo;
 }
+
 function addEdge(v, w) {
     this.adj[v].push(w);
     this.adj[w].push(v);
     this.edges++;
 }
+
 function showGraph() {
     for (var i = 0; i < this.vertices; ++i) {
         console.log('Vertex: ' + i);
@@ -33,6 +35,7 @@ function showGraph() {
         console.log('\n');
     }
 }
+
 function dfs(v) {
     this.marked[v] = true;
     if (this.adj[v] != undefined) {
@@ -44,6 +47,7 @@ function dfs(v) {
         }
     }
 }
+
 function bfs(s) {
     var queue = [];
     this.marked[s] = true;
@@ -66,6 +70,7 @@ function bfs(s) {
 function hasPathTo(v) {
     return this.marked[v];
 }
+
 function pathTo(v) {
     var source = 0;
     if (!this.hasPathTo(v)) {
@@ -78,6 +83,7 @@ function pathTo(v) {
     path.push(s);
     return path;
 }
+
 function run() {
 g = new Graph(5);
 g.addEdge(0, 1);
