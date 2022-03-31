@@ -136,7 +136,7 @@ function myList() {
     this.length = length;
     this.add = add;
     this.insert = insert;
-    this.toString = toString
+    this.toString = toString;
 };
 
 function length() {
@@ -149,8 +149,8 @@ function add(element) {
 
 function insert(element) {
     for (i = 0; i < this.dataStore.listSize; ++i) {
-        if (this.dataStore[i] < element) {
-            this.dataStore[this.listSize++] = element;
+        if (numbers.dataStore[1] < element) {
+            this.add(element);
         }
         break
     }
@@ -161,18 +161,20 @@ function toString() {
     return this.dataStore;
 }
 
-function run() {
+//function run() {
 var numbers = new myList()
 numbers.add(1);
 numbers.add(10);
 numbers.add(39);
 numbers.add(3);
 numbers.add(14);
+console.log(numbers.dataStore)
+console.log(numbers.dataStore[1])
 
 numbers.insert(200)
 
 console.log(numbers.toString())
-}
+//}
 
 
 /*
@@ -197,10 +199,11 @@ function add(element) {
 }
 
 function insert(element) {
-    for (i = 0; i < this.dataStore.listSize; ++i) {
+    for (i = 0; i < this.dataStore.length; ++i) {
         if (this.dataStore[i] < element) {
-            this.add(element);
-            break
+            console.log("It's not the biggest");
+        } else {
+            console.log("it IS the biiiigest")//this.add(element);
         }
     }
 }
@@ -216,9 +219,12 @@ numbers.add(39);
 numbers.add(3);
 numbers.add(14);
 
-numbers.insert(50);
+numbers.insert(300);
 
 console.log(numbers.toString())
+
+
+
 
 /*
 3.3 
