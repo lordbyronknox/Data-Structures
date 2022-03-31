@@ -50,8 +50,8 @@ function bfs(s) {
     queue.push(s); // add to back of queue
     while (queue.length > 0) {
         var v = queue.shift(); // remove from front of queue
-        if (v !== undefined) {
-            console.log("Visited vertex: " + v);
+        if (v == undefined) {
+            print("Visited vertex: " + v);
         }
         for (var w of this.adj[v]) {
             if (!this.marked[w]) {
@@ -62,7 +62,6 @@ function bfs(s) {
         }
     }
 }
-
 function hasPathTo(v) {
     return this.marked[v];
 }
@@ -79,22 +78,12 @@ function pathTo(v) {
     return path;
 }
 function run() {
-g = new Graph(5);
-g.addEdge(0, 1);
-g.addEdge(0, 2);
-g.addEdge(1, 3);
-g.addEdge(2, 4);
-// g.showGraph();
-// g.dfs(0);
-// g.bfs(2);
-var vertex = 4;
-var paths = g.pathTo(vertex);
-while (paths.length > 0) {
-    if (paths.length > 1) {
-        console.log(paths.pop() + '-');
-    }
-    else {
-        console.log(paths.pop());
-    }
-}
+    g = new Graph(5);
+    g.addEdge(0, 1);
+    g.addEdge(0, 2);
+    g.addEdge(1, 3);
+    g.addEdge(2, 4);
+    g.showGraph();
+    g.dfs(0);
+    g.bfs(2);
 }
