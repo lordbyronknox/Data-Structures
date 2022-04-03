@@ -8,15 +8,15 @@ function CArray(numElements) {
     this.setData = setData;
     this.swap = swap;
     for (var i = 0; i < numElements; ++i) {
-        this.dataStore[i] = i;
-        this.gaps = [5, 3, 1];
-        this.shellsort = shellsort;
-        this.shellsort1 = shellsort1;
+    this.dataStore[i] = i;
+    this.gaps = [5,3,1];
+    this.shellsort = shellsort;
+    this.shellsort1 = shellsort1;
     }
-}
+   }
 
 
-function setData() {
+   function setData() {
     for (var i = 0; i < this.numElements; ++i) {
         this.dataStore[i] = Math.floor(Math.random() *
             (this.numElements + 1));
@@ -84,18 +84,18 @@ function shellsort1() {
 
 function setGaps(arr) {
     this.gaps = arr;
-}
+   }
 
-function run() {
-    var nums = new CArray(10);
-    nums.setData();
-    console.log("Before Shellsort: \n");
-    console.log(nums.toString());
-    console.log("\nDuring Shellsort: \n");
-    nums.shellsort();
-    console.log("\nAfter Shellsort: \n");
-    console.log(nums.toString());
-}
+  function run() { 
+   var nums = new CArray(10);
+   nums.setData();
+   console.log("Before Shellsort: \n");
+   console.log(nums.toString());
+   console.log("\nDuring Shellsort: \n");
+   nums.shellsort();
+   console.log("\nAfter Shellsort: \n");
+   console.log(nums.toString());
+  }
 
 /*   console.log("-----------------------------------------")
 
@@ -107,19 +107,3 @@ nums.shellsort1();
 console.log("\nAfter Shellsort1: \n");
 console.log(nums.toString());
 */
-
-
-
-var arr1 = [3, 5, 2, 10, 30, 4];
-
-function sortIt(arr) {
-    for (i = 0; i < arr1.length(); ++i) {
-        for (j = 0; j < arr1.length(); ++j) {
-            if (arr1[i] < arr1[j]);
-                continue;
-            else {
-
-            }
-        }
-    }
-}
