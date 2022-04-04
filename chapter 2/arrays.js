@@ -648,10 +648,12 @@ for (var row = 0; row < grades.length; ++row) {
 // grades, and the third student has four grades. Because the program computes the length
 // of the row in the inner loop, this jaggedness doesn’t cause any problems. Here is the
 // output from the program:
+/*
 Student 1 average: 83.00
 Student 2 average: 79.67
 Student 3 average: 93.25
 Arrays of Objects
+*/
 
 // All of the examples in this chapter have consisted of arrays whose elements have been
 // primitive data types, such as numbers and strings. Arrays can also consist of objects,
