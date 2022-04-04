@@ -343,17 +343,68 @@ function run() {
 theses. Write a function that takes an arithmetic expression as an argument and
 returns the postion in the expression where a parenthesis is missing. An example
 of an arithmetic expression with unbalanced parentheses is 2.3 + 23 / 12 + (3.14159
-* .24.
+* .24.  */
+// Function to check if brackets are balanced
+// Function to check if brackets are balanced
+function areBracketsBalanced(expr) {
+    let stack = [];
+    for (let i = 0; i < expr.length; i++) {   // Traversing the Expression
+        let x = expr[i];
+        if (x == '(' || x == '[' || x == '{') {   // Push the element in the stack
+            stack.push(x);
+            continue;
+        }
+        if (stack.length == 0)  // If current character is not opening bracket, then it must be closing. So stack cannot be empty at this point.
+            return false;
+        let check;
+
+        if (x == ')') {
+            check = stack.pop();
+            if (check == '{' || check == '[')
+                return false;
+            break;
+        }
+        if (x == '}') {
+            check = stack.pop();
+            if (check == '(' || check == '[')
+                return false;
+            break;
+        }
+        if (x == ']') {
+            check = stack.pop();
+            if (check == '(' || check == '{')
+                return false;
+            break;
+        }
+    }
+
+    return (stack.length == 0); // Check Empty Stack
+}
 
 
+let expr = "([{}])";
+if (areBracketsBalanced(expr))
+    console.log("Balanced ");
+else
+    console.log("Not Balanced ");
+
+
+/*
 2. A postfix expression evaluator works on arithmetic expressions taking the following
 form:
 op1 op2 operator
-Using two stacks—one for the operands and one for the operators—design and
+Using two stacks — one for the operands and one for the operators — design and
 implement a JavaScript function that converts infix expressions to postfix expres‐
-sions, and then use the stacks to evaluate the expression.
+sions, and then use the stacks to evaluate the expression.  (eg:    ((x+y)*z)    -->    xy + z* )                     */
+// x + y = z    operand: x and y       operators: + and =
+// infix: the placement of operators (eg: **) between operands (ie. 2 ** 4 = 16).
+// postfix: the operand comes after the operand (i++)   -   this returns i before incrementing.
+// prefix: the operand comes before the operand (++i)    -   this return i after incrementing. 
 
 
+
+
+/*
 3. An example of a real-world stack is a Pez dispenser. Imagine that your virtual Pez
 dispenser is filled with red, yellow, and white colors and you don’t like the yellow
 ones. Write a program that uses a stack (and maybe more than one) to remove the
