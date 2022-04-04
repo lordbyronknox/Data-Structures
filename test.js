@@ -1,125 +1,109 @@
-function CArray(numElements) {
-    this.dataStore = [];
-    this.pos = 0;
-    this.numElements = numElements;
-    this.insert = insert;
-    this.toString = toString;
-    this.clear = clear;
-    this.setData = setData;
-    this.swap = swap;
-    for (var i = 0; i < numElements; ++i) {
-        this.dataStore[i] = i;
-        this.gaps = [5, 3, 1];
-        this.shellsort = shellsort;
-        this.shellsort1 = shellsort1;
-    }
+
+var stackarr = [];      // Created an empty array
+var topp = -1;          // Variable topp initialized with -1
+
+// Push function for pushing elements inside stack
+function push(e) {
+	topp++;
+	stackarr[topp] = e;
 }
 
-
-function setData() {
-    for (var i = 0; i < this.numElements; ++i) {
-        this.dataStore[i] = Math.floor(Math.random() *
-            (this.numElements + 1));
-    }
+// Pop function for returning top element
+function pop() {
+	if (topp == -1)
+		return 0;
+	else {
+		var popped_ele = stackarr[topp];
+		topp--;
+		return popped_ele;
+	}
 }
 
-function clear() {
-    for (var i = 0; i < this.dataStore.length; ++i) {
-        this.dataStore[i] = 0;
-    }
+// Function to check whether the passed character is operator or not
+function operator(op) {
+	if (op == '+' || op == '-' ||
+		op == '^' || op == '*' ||
+		op == '/' || op == '(' ||
+		op == ')') {
+		return true;
+	}
+	else
+		return false;
 }
 
-function insert(element) {
-    this.dataStore[this.pos++] = element;
+// Function to return the precedency of operator (precedency: which operator goes first... ie, * is calculated before +)
+function precedency(pre) {
+	if (pre == '@' || pre == '(' || pre == ')') {
+		return 1;
+	}
+	else if (pre == '+' || pre == '-') {
+		return 2;
+	}
+	else if (pre == '/' || pre == '*') {
+		return 3;
+	}
+	else if (pre == '^') {
+		return 4;
+	}
+	else
+		return 0;
 }
 
-function toString() {
-    var retstr = "";
-    for (var i = 0; i < this.dataStore.length; ++i) {
-        retstr += this.dataStore[i] + " ";
-        if (i > 0 && i % 10 == 0) {
-            retstr += "\n";
-        }
-    }
-    return retstr;
-}
+// Function to convert Infix to Postfix
+function InfixtoPostfix() {
 
-function swap(arr, index1, index2) {
-    var temp = arr[index1];
-    arr[index1] = arr[index2];
-    arr[index2] = temp;
-}
+	// Postfix array created
+	var postfix = [];
+	var temp = 0;
+	push('@');
+	infixval = document.getElementById("infixvalue").value;
 
+	// Iterate on infix string
+	for (var i = 0; i < infixval.length; i++) {
+		var el = infixval[i];
 
-function shellsort() {
-    for (var g = 0; g < this.gaps.length; ++g) {
-        for (var i = this.gaps[g]; i < this.dataStore.length; ++i) {
-            var temp = this.dataStore[i];
-            for (var j = i; j >= this.gaps[g] &&
-                this.dataStore[j - this.gaps[g]] > temp;
-                j -= this.gaps[g]) {
-                this.dataStore[j] = this.dataStore[j - this.gaps[g]];
-            }
-            this.dataStore[j] = temp;
-        }
-    }
-}
+		// Checking whether operator or not
+		if (operator(el)) {
+			if (el == ')') {
+				while (stackarr[topp] != "(") {
+					postfix[temp++] = pop();
+				}
+				pop();
+			}
 
-function shellsort1() {
-    var N = this.dataStore.length;
-    var h = 1;
-    while (h < N / 3) {
-        h = 3 * h + 1;
-    }
-    while (h >= 1) {
-        for (var i = h; i < N; i++) {
-            for (var j = i; j >= h && this.dataStore[j] < this.dataStore[j - h];
-                j -= h) {
-                swap(this.dataStore, j, j - h);
-            }
-        }
-        h = (h - 1) / 3;
-    }
-}
+			// Checking whether el is ( or not
+			else if (el == '(') {
+				push(el);
+			}
 
-function setGaps(arr) {
-    this.gaps = arr;
-}
+			// Comparing precedency of el and
+			// stackarr[topp]
+			else if (precedency(el) > precedency(stackarr[topp])) {
+				push(el);
+			}
+			else {
+				while (precedency(el) <=
+					precedency(stackarr[topp]) && topp > -1) {
+					postfix[temp++] = pop();
+				}
+				push(el);
+			}
+		}
+		else {
+			postfix[temp++] = el;
+		}
+	}
 
-function run() {
-    var nums = new CArray(10);
-    nums.setData();
-    console.log("Before Shellsort: \n");
-    console.log(nums.toString());
-    console.log("\nDuring Shellsort: \n");
-    nums.shellsort();
-    console.log("\nAfter Shellsort: \n");
-    console.log(nums.toString());
-}
+	// Adding character until stackarr[topp] is @
+	while (stackarr[topp] != '@') {
+		postfix[temp++] = pop();
+	}
 
-/*   console.log("-----------------------------------------")
+	// String to store postfix expression
+	var st = "";
+	for (var i = 0; i < postfix.length; i++)
+		st += postfix[i];
 
-var nums = new CArray(100);
-nums.setData();
-console.log("Before Shellsort1: \n");
-console.log(nums.toString());
-nums.shellsort1();
-console.log("\nAfter Shellsort1: \n");
-console.log(nums.toString());
-*/
-
-
-
-var arr1 = [3, 5, 2, 10, 30, 4];
-
-function sortIt(arr) {
-    for (i = 0; i < arr1.length(); ++i) {
-        for (j = 0; j < arr1.length(); ++j) {
-            if (arr1[i] < arr1[j]);
-                continue;
-            else {
-
-            }
-        }
-    }
+	// To print postfix expression in HTML
+	document.getElementById("text").innerHTML = st;
 }
