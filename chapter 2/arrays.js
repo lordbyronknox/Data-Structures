@@ -414,7 +414,8 @@ console.log(sum); // displays 55
 
 
 // The reduce() function, in conjunction with the add() function,works from left to right,
-// computing a running sum of the array elements, like this:
+// computing a running sum of the array elements, like this:    
+/*
 add(1, 2) -> 3
 add(3, 3) -> 6
 add(6, 4) -> 10
@@ -424,6 +425,7 @@ add(21, 7) -> 28
 add(28, 8) -> 36
 add(36, 9) -> 45
 add(45, 10) -> 55
+*/
 // We can also use reduce() with strings to perform concatenation:
 function concat(accumulatedString, item) {
     return accumulatedString + item;
@@ -489,9 +491,9 @@ console.log("Odd numbers: ");
 console.log(odds);
 
    //This program returns the following output:
-   Even numbers:
+//    Even numbers:
 2, 4, 6, 8, 10, 12, 14, 16, 18, 20
-   Odd numbers:
+//    Odd numbers:
 1, 3, 5, 7, 9, 11, 13, 15, 17, 19
 
 //    Here is another interesting use of filter():
@@ -503,17 +505,17 @@ for (var i = 0; i < 20; ++i) {
     grades[i] = Math.floor(Math.random() * 101);
 }
 var passGrades = grades.filter(passing);
-console.log("All grades: );
+console.log("All grades: ");
 console.log(grades);
 console.log("Passing grades: ");
 console.log(passGrades);
-This program displays:
-All grades:
+// This program displays:
+// All grades:
 39, 43, 89, 19, 46, 54, 48, 5, 13, 31, 27, 95, 62, 64, 35, 75, 79, 88, 73, 74
-Passing grades:
+// Passing grades:
 89, 95, 62, 64, 75, 79, 88, 73, 74
-Of course, we can also use filter() with strings.Here is an example that applies the
-spelling rule “i before e except after c”:
+// Of course, we can also use filter() with strings.Here is an example that applies the
+// spelling rule “i before e except after c”:
 function afterc(str) {
     if (str.indexOf("cie") > -1) {
         return true;
@@ -564,7 +566,7 @@ var names = Array.matrix(3, 3, "");
 names[1][2] = "Joe";
 console.log(names[1][2]); // display "Joe"
 
-We can also create a two - dimensional array and initialize it to a set of values in one line:
+// We can also create a two - dimensional array and initialize it to a set of values in one line:
 var grades = [[89, 77, 78], [76, 82, 81], [91, 94, 89]];
 console.log(grades[2][2]); // displays 89
 // For small data sets, this is the easiest way to create a two-dimensional array.
@@ -600,9 +602,9 @@ for (var row = 0; row < grades.length; ++row) {
 // The grade average for each student is rounded to two decimals using the toFixed(n)
 // function.
 // Here is the output from the program:
-Student 1 average: 81.33
-Student 2 average: 79.67
-Student 3 average: 91.33
+// Student 1 average: 81.33
+// Student 2 average: 79.67
+// Student 3 average: 91.33
 
 // To perform a row-wise computation, we simply have to flip the for loops so that the
 // outer loop controls the columns and the inner loop controls the rows. Here is the cal‐
@@ -622,9 +624,11 @@ for (var col = 0; col < grades.length; ++col) {
 }
 
 // The output from this program is:
+/*
 Test 1 average: 85.33
 Test 2 average: 84.33
 Test 3 average: 82.67
+*/
 
 //Jagged Arrays
 //To give you an example, imagine the grades array where students have an unequal
