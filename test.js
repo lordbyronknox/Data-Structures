@@ -13,13 +13,18 @@ for (var i = pez_dispenser.length - 1; i >= 0; i--) {
         scrap += pez_dispenser.pop(pez_dispenser[i])
     }
     else {
-        keeperIt += (pez_dispenser.pop(pez_dispenser[i]) + ', ')
+        keeperIt += (pez_dispenser.pop(pez_dispenser[i]))
     }
 }
 for (var j = keeperIt.length - 1; j >= 0; j--) {
-    // pez_dispenser += (keeperIt.pop(keeperIt[j]) + ', ');
+    if (keeperIt[i] == keeperIt.length) {
+        console.log(keeperIt[i])
+        // pez_dispenser += (keeperIt.pop(keeperIt[i]) + ', ');
+    }
+    
 }
 
 console.log(scrap)
-console.log(keeperIt)
+console.log(keeperIt.length)
 console.log(pez_dispenser)
+
