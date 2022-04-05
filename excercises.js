@@ -394,12 +394,136 @@ else
 form:
 op1 op2 operator
 Using two stacks — one for the operands and one for the operators — design and
-implement a JavaScript function that converts infix expressions to postfix expres‐
-sions, and then use the stacks to evaluate the expression.  (eg:    ((x+y)*z)    -->    xy + z* )                     */
+implement a JavaScript function that converts infix expressions to postfix expressions, 
+and then use the stacks to evaluate the expression.  (eg:    ((x+y)*z)    -->    xy + z* )                     */
 // x + y = z    operand: x and y       operators: + and =
 // infix: the placement of operators (eg: **) between operands (ie. 2 ** 4 = 16).
 // postfix: the operand comes after the operand (i++)   -   this returns i before incrementing.
 // prefix: the operand comes before the operand (++i)    -   this return i after incrementing. 
+
+
+//*********************************WORK IN PROGRESS********************************************* */
+
+function in_to_postFix(expression) {
+    var operandStack = [];
+    var operatorStack = [];
+    for (var i = 0; i < expression.length; ++i) {
+        console.log(expression[i]);
+        if (expression[i] == '(' || expression[i] == ')'
+            || expression[i] == '+' || expression[i] == '-'
+            || expression[i] == '*' || expression[i] == '/') {
+            operatorStack.push(expression[i]);
+        }else{
+            operandStack.push(expression[i])
+        }
+    }
+    console.log(operatorStack)
+    console.log(operandStack)
+}
+
+
+in_to_postFix('(1+2)*3')
+
+////code from the web............/////////////////////
+
+var stackarr = [];      // Created an empty array
+var topp = -1;          // Variable topp initialized with -1
+
+// Push function for pushing elements inside stack
+function push(e) {
+	topp++;
+	stackarr[topp] = e;
+}
+
+// Pop function for returning top element
+function pop() {
+	if (topp == -1)
+		return 0;
+	else {
+		var popped_ele = stackarr[topp];
+		topp--;
+		return popped_ele;
+	}
+}
+
+// Function to check whether the passed character is operator or not
+function operator(op) {
+	if (op == '+' || op == '-' ||
+		op == '^' || op == '*' ||
+		op == '/' || op == '(' ||
+		op == ')') {
+		return true;
+	}
+	else
+		return false;
+}
+
+// Function to return the precedency (BODMAS) of operator (precedency: which operator goes first... ie, * is calculated before +)
+function precedency(pre) {
+	if (pre == '@' || pre == '(' || pre == ')') {
+		return 1;
+	}
+	else if (pre == '+' || pre == '-') {
+		return 2;
+	}
+	else if (pre == '/' || pre == '*') {
+		return 3;
+	}
+	else if (pre == '^') {
+		return 4;
+	}
+	else
+		return 0;
+}
+
+// Function to convert Infix to Postfix
+function InfixtoPostfix(expression) {
+	var postfix = [];       	
+	var temp = 0;
+	push('@');
+	infixval = expression;
+	
+	for (var i = 0; i < infixval.length; i++) {     // Iterate on infix string
+		var el = infixval[i];
+		if (operator(el)) {                         // Checking whether operator or not
+			if (el == ')') {
+				while (stackarr[topp] != "(") {
+					postfix[temp++] = pop();
+				}
+				pop();
+			}
+			
+			else if (el == '(') {                   // Checking whether el is ( or not
+				push(el);
+			}
+			else if (precedency(el) > precedency(stackarr[topp])) {     // Comparing precedency of el and stackarr[topp]
+				push(el);
+			}
+			else {
+				while (precedency(el) <=
+					precedency(stackarr[topp]) && topp > -1) {
+					postfix[temp++] = pop();
+				}
+				push(el);
+			}
+		}
+		else {
+			postfix[temp++] = el;
+		}
+	}
+	while (stackarr[topp] != '@') {     	// Adding character until stackarr[topp] is @
+		postfix[temp++] = pop();
+	}
+	var st = "";                            // String to store postfix expression
+	for (var i = 0; i < postfix.length; i++)
+		st += postfix[i];
+
+	// To print postfix expression in console
+	console.log(st)
+}
+
+InfixtoPostfix((1+2)*3)
+
 
 
 

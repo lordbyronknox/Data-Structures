@@ -1,109 +1,25 @@
+/*
+3. An example of a real-world stack is a Pez dispenser. Imagine that your virtual Pez
+dispenser is filled with red, yellow, and white colors and you don’t like the yellow
+ones. Write a program that uses a stack (and maybe more than one) to remove the
+yellow ones without changing the order of the other candies in the dispenser. */
 
-var stackarr = [];      // Created an empty array
-var topp = -1;          // Variable topp initialized with -1
 
-// Push function for pushing elements inside stack
-function push(e) {
-	topp++;
-	stackarr[topp] = e;
+var pez_dispenser = ['Y', 'R', 'W', 'W', 'R', 'W', 'Y', 'Y', 'W'];
+var scrap = [];
+var keeperIt = [];
+for (var i = pez_dispenser.length - 1; i >= 0; i--) {
+    if (pez_dispenser[i] == 'Y') {
+        scrap += pez_dispenser.pop(pez_dispenser[i])
+    }
+    else {
+        keeperIt += (pez_dispenser.pop(pez_dispenser[i]) + ', ')
+    }
+}
+for (var j = keeperIt.length - 1; j >= 0; j--) {
+    // pez_dispenser += (keeperIt.pop(keeperIt[j]) + ', ');
 }
 
-// Pop function for returning top element
-function pop() {
-	if (topp == -1)
-		return 0;
-	else {
-		var popped_ele = stackarr[topp];
-		topp--;
-		return popped_ele;
-	}
-}
-
-// Function to check whether the passed character is operator or not
-function operator(op) {
-	if (op == '+' || op == '-' ||
-		op == '^' || op == '*' ||
-		op == '/' || op == '(' ||
-		op == ')') {
-		return true;
-	}
-	else
-		return false;
-}
-
-// Function to return the precedency of operator (precedency: which operator goes first... ie, * is calculated before +)
-function precedency(pre) {
-	if (pre == '@' || pre == '(' || pre == ')') {
-		return 1;
-	}
-	else if (pre == '+' || pre == '-') {
-		return 2;
-	}
-	else if (pre == '/' || pre == '*') {
-		return 3;
-	}
-	else if (pre == '^') {
-		return 4;
-	}
-	else
-		return 0;
-}
-
-// Function to convert Infix to Postfix
-function InfixtoPostfix() {
-
-	// Postfix array created
-	var postfix = [];
-	var temp = 0;
-	push('@');
-	infixval = document.getElementById("infixvalue").value;
-
-	// Iterate on infix string
-	for (var i = 0; i < infixval.length; i++) {
-		var el = infixval[i];
-
-		// Checking whether operator or not
-		if (operator(el)) {
-			if (el == ')') {
-				while (stackarr[topp] != "(") {
-					postfix[temp++] = pop();
-				}
-				pop();
-			}
-
-			// Checking whether el is ( or not
-			else if (el == '(') {
-				push(el);
-			}
-
-			// Comparing precedency of el and
-			// stackarr[topp]
-			else if (precedency(el) > precedency(stackarr[topp])) {
-				push(el);
-			}
-			else {
-				while (precedency(el) <=
-					precedency(stackarr[topp]) && topp > -1) {
-					postfix[temp++] = pop();
-				}
-				push(el);
-			}
-		}
-		else {
-			postfix[temp++] = el;
-		}
-	}
-
-	// Adding character until stackarr[topp] is @
-	while (stackarr[topp] != '@') {
-		postfix[temp++] = pop();
-	}
-
-	// String to store postfix expression
-	var st = "";
-	for (var i = 0; i < postfix.length; i++)
-		st += postfix[i];
-
-	// To print postfix expression in HTML
-	document.getElementById("text").innerHTML = st;
-}
+console.log(scrap)
+console.log(keeperIt)
+console.log(pez_dispenser)
