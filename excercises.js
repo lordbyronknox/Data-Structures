@@ -620,11 +620,12 @@ q.enqueuePush("Cynthia");
 q.enqueuePush("Jennifer");
 console.log(q.toString());
 
-// q.enqueuePop();
-// q.enqueuePush("Lilly");
-// q.dequeueShift();
-q.dequeueUnshift("Lilly");
+// q.enqueuePop();              //remove from end
+// q.enqueuePush("Lilly");      //add to end
+// q.dequeueShift();            //remove from front
+q.dequeueUnshift("Lilly");      //add to front
 console.log(q.toString());
+console.log(q.dataStore[0][0])
 
 
 
