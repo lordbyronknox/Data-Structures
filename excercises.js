@@ -565,99 +565,32 @@ pezPicker(pez_dispenser);
 
 1. Modify the Queue class to create a Deque class. A deque is a queue-like structure
 that allows elements to be added and removed from both the front and the back of
-the list. Test your class in a program.
-
-
-
-
-
-/* CHAPTER 5
-
-1. Modify the Queue class to create a Deque class. A deque is a queue-like structure
-that allows elements to be added and removed from both the front and the back of
 the list. Test your class in a program. */
-
-
-
-names = [];
-names.push("Cynthia");
-names.push("Jennifer");
-console.log(names);
-
-//Then we can remove the element from the front of the array using shift():
-names.shift();
-console.log(names);
-
-// Now we’re ready to begin implementing the Queue class by defining the constructor
-// function:
-function Queue() {
+function Dequeue() {
     this.dataStore = [];
-    this.enqueue = enqueue;
-    this.dequeue = dequeue;
+    this.enqueuePush = enqueuePush;
+    this.dequeueShift = dequeueShift;
+    this.enqueuePop = enqueuePop;
+    this.dequeueUnshift = dequeueUnshift;
     this.front = front;
     this.back = back;
     this.toString = toString;
     this.empty = empty;
 }
-
-
-//  The enqueue() function adds an element to the END of a queue:
-function enqueue(element) {
+function enqueuePush(element) {
     this.dataStore.push(element);
 }
-
-// The dequeue() function removes an element from the FRONT of a queue:
-function dequeue() {
+function dequeueShift() {
     return this.dataStore.shift();
 }
 
-// We can examine the front and back elements of a queue using these functions:
-function front() {
-    return this.dataStore[0];
+function enqueuePop(element) {
+    this.dataStore.pop(element);
 }
-function back() {
-    return this.dataStore[this.dataStore.length - 1];
-}
-
-// We also need a toString() function to display all the elements in a queue:
-function toString() {
-    var retStr = "";
-    for (var i = 0; i < this.dataStore.length; ++i) {
-        retStr += this.dataStore[i] + "\n";
-    }
-    return retStr;
+function dequeueUnshift(element) {
+    return this.dataStore.unshift(element);
 }
 
-// Finally, we need a function that lets us know if a queue is empty:
-function empty() {
-    if (this.dataStore.length == 0) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-
-
-
-//**************************** */
-// Example 5-1. Queue class definition and a test program.
-function Queue() {
-    this.dataStore = [];
-    this.enqueue = enqueue;
-    this.dequeue = dequeue;
-    this.front = front;
-    this.back = back;
-    this.toString = toString;
-    this.empty = empty;
-}
-function enqueue(element) {
-    this.dataStore.push(element);
-}
-function dequeue() {
-    return this.dataStore.shift();
-}
 function front() {
     return this.dataStore[0];
 }
@@ -681,62 +614,30 @@ function empty() {
 }
 
 // test program
-var q = new Queue();
-q.enqueue("Meredith");
-q.enqueue("Cynthia");
-q.enqueue("Jennifer");
+var q = new Dequeue();
+q.enqueuePush("Meredith");
+q.enqueuePush("Cynthia");
+q.enqueuePush("Jennifer");
 console.log(q.toString());
 
-q.dequeue();
+// q.enqueuePop();
+// q.enqueuePush("Lilly");
+// q.dequeueShift();
+q.dequeueUnshift("Lilly");
 console.log(q.toString());
-console.log("Front of queue: " + q.front());
-console.log("Back of queue: " + q.back());
 
 
 
 
 
-////////////////////////////////////////////////////////////////////////////////////////
-
-function Deque() {
-    this.dataStore = [];
-    this.enqueue = enqueue;
-    this.dequeue = dequeue;
-    this.front = front;
-    this.back = back;
-    this.toString = toString;
-    this.empty = empty;
-}
-
-
-//  The enqueue() function adds an element to the END of a queue:
-function enqueue(element) {
-    this.dataStore.push(element);
-}
-
-// The dequeue() function removes an element from the FRONT of a queue:
-function dequeue() {
-    return this.dataStore.shift();
-}
-
-// We can examine the front and back elements of a queue using these functions:
-function front() {
-    return this.dataStore[0];
-}
-function back() {
-    return this.dataStore[this.dataStore.length - 1];
-}
-
-
-
-
-
-
-
-
-
+/*
 2. Use the Deque class you created in Example 5-1 to determine if a given word is a
-palindrome.
+palindrome.     */
+
+
+
+
+
 
 
 3. Modify the priority queue example from Example 5-5 so that the higher-priority
