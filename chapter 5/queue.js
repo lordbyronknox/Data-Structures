@@ -1,11 +1,11 @@
 names = [];
-name.push("Cynthia");
+names.push("Cynthia");
 names.push("Jennifer");
-print(names);
+console.log(names);
 
 //Then we can remove the element from the front of the array using shift():
 names.shift();
-print(names);
+console.log(names);
 
 // Now we’re ready to begin implementing the Queue class by defining the constructor
 // function:
