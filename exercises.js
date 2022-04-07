@@ -26,8 +26,10 @@ studentA.add(80);
 studentA.add(63);
 studentA.add(52);
 
+console.log(studentA.average())
 
-/*
+
+/*   
 2.2. Store a set of words in an array and display the contents both forward and backward.   */
 
 function concat(accumulatedString, item) {
@@ -36,6 +38,8 @@ function concat(accumulatedString, item) {
 
 var words = ["the ", "quick ", "brown ", "fox "];
 var sentence = words.reduceRight(concat);
+console.log(sentence)
+console.log(words)
 
 
 /* 
@@ -292,7 +296,7 @@ menOrWomen('F')
 
 
 
-/*
+/*  ///////////////////////////////////WORK IN PROGRESS////////////////////////////////////
 3.4
 Modify the video-rental kiosk program so that when a movie is checked out it is
 added to a list of rented movies. Display this list whenever a customer checks out
@@ -625,7 +629,7 @@ console.log(q.toString());
 // q.dequeueShift();            //remove from front
 q.dequeueUnshift("Lilly");      //add to front
 console.log(q.toString());
-console.log(q.dataStore[0][0])
+
 
 
 
