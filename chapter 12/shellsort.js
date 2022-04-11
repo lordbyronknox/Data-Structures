@@ -89,14 +89,15 @@ function setGaps(arr) {
   function run() { 
    var nums = new CArray(10);
    nums.setData();
-   console.log("Before Shellsort: \n");
-   console.log(nums.toString());
-   console.log("\nDuring Shellsort: \n");
-   nums.shellsort();
-   console.log("\nAfter Shellsort: \n");
-   console.log(nums.toString());
-  }
+   document.write("Before Shellsort: \n" + nums.toString());
 
+   nums.shellsort();
+   document.write("\nAfter Shellsort: \n" + nums.toString());
+   }
+
+
+
+   
 /*   console.log("-----------------------------------------")
 
 var nums = new CArray(100);
