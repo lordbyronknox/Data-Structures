@@ -44,15 +44,18 @@ function swap(arr, index1, index2) {
     var temp = arr[index1];
     arr[index1] = arr[index2];
     arr[index2] = temp;
+    document.write("We have swapped " + index1 + "and " + index2 + "around.")
 }
 
 //bubble sort
 function bubbleSort() {
     var numElements = this.dataStore.length;
     var temp;
+    document.write("blah blah blah.... explain what the bubble sort is going to do")
     for (var outer = numElements; outer >= 2; --outer) {
         for (var inner = 0; inner <= outer - 1; ++inner) {
             if (this.dataStore[inner] > this.dataStore[inner + 1]) {
+                document.write(this.dataStore[inner] + " is bigger than " + this.dataStore[inner + 1] + " so we will swap them around")
                 swap(this.dataStore, inner, inner + 1);
             }
         }

@@ -1,3 +1,5 @@
+
+//Below shows a function for performing sequential search on an array.
 function seqSearch(arr, data) {
     for (var i = 0; i < arr.length; ++i) {
         if (arr[i] == data) {
@@ -130,3 +132,36 @@ function run() {
     var retVal = count(nums, val);
     console.log("Found " + retVal + " occurrences of " + val + ".");
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var arr1 = [];
+for (var i = 0; i < 10; ++i) {
+    arr1[i] = Math.floor(Math.random() * 10);
+}
+console.log(arr1);
+
+function minMax(arr) {
+    min = [arr[1]];
+    max = [];
+    for (var i = 0; i < arr.length; ++i) {
+        if (arr[i] < min) {
+            min = arr[i];
+        }
+        else if (arr[i] > max) {
+            max = arr[i]
+        }
+    }console.log("min: " + min + "\n" + "max: " + max)
+}
+minMax(arr1)
