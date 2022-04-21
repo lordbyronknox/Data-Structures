@@ -1,0 +1,26 @@
+table {
+    background-color: rgb(67, 123, 130);
+    border-style: groove;
+    border-width: 5px;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td,
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: rgb(168, 210, 183);
+}
+
+cart {
+    background-size: contain;
+   
+ 
+
+}
