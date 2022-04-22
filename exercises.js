@@ -574,8 +574,8 @@ function Dequeue() {
     this.dataStore = [];
     this.enqueuePush = enqueuePush;
     this.dequeueShift = dequeueShift;
-    this.enqueuePop = enqueuePop;
-    this.dequeueUnshift = dequeueUnshift;
+    this.dequeuePop = dequeuePop;
+    this.enqueueUnshift = enqueueUnshift;
     this.front = front;
     this.back = back;
     this.toString = toString;
@@ -588,10 +588,10 @@ function dequeueShift() {
     return this.dataStore.shift();
 }
 
-function enqueuePop(element) {
+function dequeuePop(element) {
     this.dataStore.pop(element);
 }
-function dequeueUnshift(element) {
+function enqueueUnshift(element) {
     return this.dataStore.unshift(element);
 }
 
@@ -624,10 +624,10 @@ q.enqueuePush("Cynthia");
 q.enqueuePush("Jennifer");
 console.log(q.toString());
 
-// q.enqueuePop();              //remove from end
+// q.dequeuePop();              //remove from end
 // q.enqueuePush("Lilly");      //add to end
 // q.dequeueShift();            //remove from front
-q.dequeueUnshift("Lilly");      //add to front
+q.enqueueUnshift("Lilly");      //add to front
 console.log(q.toString());
 
 
@@ -638,6 +638,77 @@ console.log(q.toString());
 /*
 2. Use the Deque class you created in Example 5-1 to determine if a given word is a
 palindrome.     */
+function Dequeue() {
+    this.dataStore = [];
+    this.enqueuePush = enqueuePush;
+    this.dequeueShift = dequeueShift;
+    this.dequeuePop = dequeuePop;
+    this.enqueueUnshift = enqueueUnshift;
+    this.front = front;
+    this.back = back;
+    this.toString = toString;
+    this.empty = empty;
+}
+function enqueuePush(element) {
+    this.dataStore.push(element);
+}
+function dequeueShift() {
+    return this.dataStore.shift();
+}
+
+function dequeuePop(element) {
+    this.dataStore.pop(element);
+}
+function enqueueUnshift(element) {
+    return this.dataStore.unshift(element);
+}
+
+function front() {
+    return this.dataStore[0];
+}
+function back() {
+    return this.dataStore[this.dataStore.length - 1];
+}
+function toString() {
+    var retStr = "";
+    for (var i = 0; i < this.dataStore.length; ++i) {
+        retStr += this.dataStore[i] + "\n";
+    }
+    return retStr;
+}
+function empty() {
+    if (this.dataStore.length == 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+
+function palindromeChecker(word) {
+    for (i in word) {
+        q.enqueuePush(word[i])
+    }
+    while (q.front() == q.back()) {
+        q.dequeueShift();
+        q.dequeuePop();
+        // console.log(q.front() + " and " + q.back() + " length:" + q.dataStore.length)
+        if (q.dataStore.length == 0) {
+            console.log("PALINDROME!!")
+            break;
+        }else if (q.front() != q.back()) {
+            console.log("NOT A PALINDROME")
+        }
+    }
+    }
+
+// test program
+var q = new Dequeue();
+word_1 = "antivtna";
+word_2 = "anna";
+palindromeChecker(word_1);
+palindromeChecker(word_2);
 
 
 
@@ -648,6 +719,10 @@ palindrome.     */
 3. Modify the priority queue example from Example 5-5 so that the higher-priority
 elements have higher numbers rather than lower numbers. Test your implementa‐
 tion with the example in the chapter.   */
+
+
+
+
 
 
 
