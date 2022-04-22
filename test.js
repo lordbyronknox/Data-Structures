@@ -1,111 +1,81 @@
-function CArray(numElements) {
-    this.dataStore = [];
-    this.pos = 0;
-    this.numElements = numElements;
-    this.insert = insert;
-    this.toString = toString;
-    this.clear = clear;
-    this.setData = setData;
-    this.swap = swap;
-    for (var i = 0; i < numElements; ++i) {
-    this.dataStore[i] = i;
-    this.gaps = [5,3,1];
-    this.shellsort = shellsort;
-    this.shellsort1 = shellsort1;
-    }
-   }
-
-
-   function setData() {
-    for (var i = 0; i < this.numElements; ++i) {
-        this.dataStore[i] = Math.floor(Math.random() *
-            (this.numElements + 1));
+class Queue {
+    constructor() {
+        this.dataStore = [];
+        this.enqueue = enqueue;
+        this.dequeue = dequeue;
+        this.front = front;
+        this.back = back;
+        this.toString = toString;
+        this.empty = empty;
     }
 }
-
-function clear() {
-    for (var i = 0; i < this.dataStore.length; ++i) {
-        this.dataStore[i] = 0;
+function enqueue(element) {
+    this.dataStore.push(element);
+}
+function dequeue() {
+    var priority = this.dataStore[0].code;
+    for (var i = 1; i < this.dataStore.length; ++i) {
+        if (this.dataStore[i].code < priority) {
+            priority = i;
+        }
     }
+    return this.dataStore.splice(priority, 1);
 }
-
-function insert(element) {
-    this.dataStore[this.pos++] = element;
+function front() {
+    return this.dataStore[0];
 }
-
+function back() {
+    return this.dataStore[this.dataStore.length - 1];
+}
 function toString() {
-    var retstr = "";
+    var retStr = "";
     for (var i = 0; i < this.dataStore.length; ++i) {
-        retstr += this.dataStore[i] + " ";
-        if (i > 0 && i % 10 == 0) {
-            retstr += "\n";
-        }
+        retStr += this.dataStore[i] + "\n";
     }
-    return retstr;
+    return retStr;
 }
-
-function swap(arr, index1, index2) {
-    document.write("<br>We swap index " + index2 + " and index " + index1 + " around.")
-    var temp = arr[index1];
-    arr[index1] = arr[index2];
-    arr[index2] = temp;
-    document.write("<br>Here's what the array looks like now: " + arr + "<br>");
-}
-
-
-function shellsort() {
-    for (var g = 0; g < this.gaps.length; ++g) {
-        for (var i = this.gaps[g]; i < this.dataStore.length; ++i) {
-            var temp = this.dataStore[i];
-            for (var j = i; j >= this.gaps[g] &&
-                this.dataStore[j - this.gaps[g]] > temp;
-                j -= this.gaps[g]) {
-                this.dataStore[j] = this.dataStore[j - this.gaps[g]];
-            }
-            this.dataStore[j] = temp;
-        }
+function empty() {
+    if (this.dataStore.length == 0) {
+        return true;
+    }
+    else {
+        return false;
     }
 }
-
-function shellsort1() {
-    var N = this.dataStore.length;
-    var h = 1;
-    while (h < N / 3) {
-        h = 3 * h + 1;
+function Patient(name, code) {
+    this.name = name;
+    this.code = code;
+}
+function toString() {
+    var retStr = "";
+    for (var i = 0; i < this.dataStore.length; ++i) {
+        retStr += this.dataStore[i].name + " code: "
+            + this.dataStore[i].code + "\n";
     }
-    document.write("We compare the value in the first index with the value in the middle index of the array...<br> and if the second index is smaller we swap them around.<br> We keep the same gap between the indexes and we move up one index position. When we get to the end of the array we reduce the gap by one and repeat the process.<br>");
-    while (h >= 1) {
-        for (var i = h; i < N; i++) {
-            for (var j = i; j >= h && this.dataStore[j] < this.dataStore[j - h]; j -= h) {
-                document.write("<br>" + "COMPARING INDEX " + (j-h) + " and " + j + "<br>Index " + (j-h) + " = " + this.dataStore[j-h] + "<br>"
-                + "Index "+ j + " = " + this.dataStore[j])
-                swap(this.dataStore, j, j - h);
-            }
-        }
-        h = (h - 1) / 3;
-    }
+    return retStr;
 }
 
-function setGaps(arr) {
-    this.gaps = arr;
-   }
 
-  function run() { 
-   var nums = new CArray(10);
-   nums.setData();
-   document.write("Before Shellsort: \n" + nums.toString() + "<br><br>");
-
-   nums.shellsort1();
-   document.write("<br>After Shellsort: \n" + nums.toString());
-   }
-
-
-
-
-
-
-
-
-
-
-
+    var p = new Patient("Smith", 5);
+    var ed = new Queue();
+    ed.enqueue(p);
+    p = new Patient("Jones", 4);
+    ed.enqueue(p);
+    p = new Patient("Fehrenbach", 6);
+    ed.enqueue(p);
+    p = new Patient("Brown", 1);
+    ed.enqueue(p);
+    p = new Patient("Ingram", 1);
+    ed.enqueue(p);
+    console.log(ed.toString());
+    var seen = ed.dequeue();
+    console.log("Patient being treated: " + seen[0].name);
+    // console.log("Patients waiting to be seen: ")
+    // console.log(ed.toString());
+    // // another round
+    // var seen = ed.dequeue();
+    // console.log("Patient being treated: " + seen[0].name);
+    // console.log("Patients waiting to be seen: ")
+    // console.log(ed.toString());
+    // var seen = ed.dequeue();
+    // console.log("Patient being treated: " + seen[0].name);
