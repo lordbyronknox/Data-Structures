@@ -1,0 +1,151 @@
+Problem solving approach
+------------------------
+
+Algorithm: a process/set of steps to accomplish a certain task.
+
+How do you get better at it?
+	1. Devise a plan for solving problems.
+	2. Master common problem solving patterns.
+
+PROBLEM SOLVING:
+ * Understand the problem.
+ * Explore concrete examples.
+ * Break it down.
+ * Solve/Simplify.
+ * Look back and Refactor.
+
+BYRON
+STEP 1:	UNDERSTAND THE PROBLEM:
+	Before you start typing away... take a minute to make sure you understand the problem.
+	ask yourself:	- can you restate the problem in your own words? (reword the question to make sure you understand it)
+			- what are the inputs that go into the problem?  
+			- what are the outputs that should come from the solution to the problem?
+			- Can the outputs be determined from the inputs?	(i.e. do you have enough info to solve the problem)
+			- how should you label the important pieces of the data that are a part of the problem?
+
+	EXAMPLE:
+	Write a function that takes two numbers and returns their sum.
+
+			- can you restate the problem in your own words? 
+				"write a function that adds two numbers"
+
+			- what are the inputs that go into the problem?  
+				"what are the numbers... int or floating point....or string?
+				"how large are the numbers?
+				
+			- what are the outputs that should come from the solution to the problem?
+				"must the output be a float, an int, or can it be a string"
+
+			- Can the outputs be determined from the inputs?	(i.e. do you have enough info to solve the problem)
+				"what do you do if the user only supplies one number...?"
+
+			- how should you label the important pieces of the data that are a part of the problem?
+				"what are you going you to call the variables and output? num1, num2, total...etc"
+
+
+STEP 2: EXPLORE CONCRETE EXAMPLES:
+	- start with simple examples.
+	- progress to more complex examples.
+	- explore examples with empty inputs.
+	- explore examples with invalid inputs.
+
+	EXAMPLE:
+	Write a function which takes in a string and returns counts of each charater in the string.
+
+	- So start by writing a simple example:	
+		charCount("aabbbccc")	//return {a:2, b:3, c:3}	
+	  	...should it include characters that aren't in the string, like ...d:0}
+	
+	- Then ask more complex examples:
+		"My phone number is 011 8234 2020"	- should it count numbers, spaces, capital letters?
+	
+	- Explore examples with empty inputs:
+		charCount("")				- what should you do if the input is an empty string. return {}... null... 0.. error?
+		
+	- Explore examples with invalid input:
+		charCount(100)				- what should it return..??? should you convert it to a string..?
+
+
+
+
+Byron
+STEP 3: BREAK IT DOWN:
+	- write down the steps you need to take. It forces you to think about the process, and give you some structure.
+		
+	EXAMPLE:
+	Write a function that returns the count of each letter in an array.  "a, a, b, b, b, c, c, c, c"
+		
+		//what must it return?
+		{a:2;
+		 b:3;
+		 c:4;
+		 }
+
+
+		function charCount(str) {
+			//make an object
+			//loop over string
+				//if char is letter/number AND is a key in object, add one to count.
+				//if char is letter/number AND NOT in object, add it to object and set count to 1.
+				//if char is not letter/number, don't do anything.
+			//return object
+		}
+
+		
+
+
+
+STEP 4: SOLVE OR SIMPLIFY:
+Solve the problem if you can. and if you can't solve the simple parts that you can do.. can come back to the problem you're stuck on.
+
+	EXAMPLE: same as above.
+		
+		if you have trouble with looping - try write the code with only one charater (instead of the whole string). try to process it
+		as you would if it were part of the loop... and then come back to the loop and the string array.
+		
+		function charCount(str) {
+			//make an object
+			*****var obj = {};
+			//loop over string
+				//if char is letter/number AND is a key in object, add one to count.
+				******
+				//if char is letter/number AND NOT in object, add it to object and set count to 1.
+				******
+				//if char is not letter/number, don't do anything.
+			//return object
+		}
+
+
+Byron
+STEP 5: LOOK BACK AND REFACTOR:
+...see how you can improve your code.
+
+	- can you check the resluts (i.e. does your code work)
+	- can you derive the code differently? (is there a different a way to approach it)
+	- can you understand it at a glance? (does your code make sense... is it understandable)
+	- can you use the method for some other problem? (...maybe something else you are working on)
+	- can you improve the performance?
+	- can you think of other ways to refactor it?
+	- how have other people solved the problem?
+	
+
+	EXAMPLE:
+	instead of....  for(var i = 0; i < arr.length; ++i) {
+	use.....	for (var i of arr) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
