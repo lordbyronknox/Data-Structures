@@ -417,7 +417,7 @@ function in_to_postFix(expression) {
             || expression[i] == '+' || expression[i] == '-'
             || expression[i] == '*' || expression[i] == '/') {
             operatorStack.push(expression[i]);
-        }else{
+        } else {
             operandStack.push(expression[i])
         }
     }
@@ -435,98 +435,98 @@ var topp = -1;          // Variable topp initialized with -1
 
 // Push function for pushing elements inside stack
 function push(e) {
-	topp++;
-	stackarr[topp] = e;
+    topp++;
+    stackarr[topp] = e;
 }
 
 // Pop function for returning top element
 function pop() {
-	if (topp == -1)
-		return 0;
-	else {
-		var popped_ele = stackarr[topp];
-		topp--;
-		return popped_ele;
-	}
+    if (topp == -1)
+        return 0;
+    else {
+        var popped_ele = stackarr[topp];
+        topp--;
+        return popped_ele;
+    }
 }
 
 // Function to check whether the passed character is operator or not
 function operator(op) {
-	if (op == '+' || op == '-' ||
-		op == '^' || op == '*' ||
-		op == '/' || op == '(' ||
-		op == ')') {
-		return true;
-	}
-	else
-		return false;
+    if (op == '+' || op == '-' ||
+        op == '^' || op == '*' ||
+        op == '/' || op == '(' ||
+        op == ')') {
+        return true;
+    }
+    else
+        return false;
 }
 
 // Function to return the precedency (BODMAS) of operator (precedency: which operator goes first... ie, * is calculated before +)
 function precedency(pre) {
-	if (pre == '@' || pre == '(' || pre == ')') {
-		return 1;
-	}
-	else if (pre == '+' || pre == '-') {
-		return 2;
-	}
-	else if (pre == '/' || pre == '*') {
-		return 3;
-	}
-	else if (pre == '^') {
-		return 4;
-	}
-	else
-		return 0;
+    if (pre == '@' || pre == '(' || pre == ')') {
+        return 1;
+    }
+    else if (pre == '+' || pre == '-') {
+        return 2;
+    }
+    else if (pre == '/' || pre == '*') {
+        return 3;
+    }
+    else if (pre == '^') {
+        return 4;
+    }
+    else
+        return 0;
 }
 
 // Function to convert Infix to Postfix
 function InfixtoPostfix(expression) {
-	var postfix = [];       	
-	var temp = 0;
-	push('@');
-	infixval = expression;
-	
-	for (var i = 0; i < infixval.length; i++) {     // Iterate on infix string
-		var el = infixval[i];
-		if (operator(el)) {                         // Checking whether operator or not
-			if (el == ')') {
-				while (stackarr[topp] != "(") {
-					postfix[temp++] = pop();
-				}
-				pop();
-			}
-			
-			else if (el == '(') {                   // Checking whether el is ( or not
-				push(el);
-			}
-			else if (precedency(el) > precedency(stackarr[topp])) {     // Comparing precedency of el and stackarr[topp]
-				push(el);
-			}
-			else {
-				while (precedency(el) <=
-					precedency(stackarr[topp]) && topp > -1) {
-					postfix[temp++] = pop();
-				}
-				push(el);
-			}
-		}
-		else {
-			postfix[temp++] = el;
-		}
-	}
-	while (stackarr[topp] != '@') {     	// Adding character until stackarr[topp] is @
-		postfix[temp++] = pop();
-	}
-	var st = "";                            // String to store postfix expression
-	for (var i = 0; i < postfix.length; i++)
-		st += postfix[i];
+    var postfix = [];
+    var temp = 0;
+    push('@');
+    infixval = expression;
 
-	// To print postfix expression in console
-	console.log(st)
+    for (var i = 0; i < infixval.length; i++) {     // Iterate on infix string
+        var el = infixval[i];
+        if (operator(el)) {                         // Checking whether operator or not
+            if (el == ')') {
+                while (stackarr[topp] != "(") {
+                    postfix[temp++] = pop();
+                }
+                pop();
+            }
+
+            else if (el == '(') {                   // Checking whether el is ( or not
+                push(el);
+            }
+            else if (precedency(el) > precedency(stackarr[topp])) {     // Comparing precedency of el and stackarr[topp]
+                push(el);
+            }
+            else {
+                while (precedency(el) <=
+                    precedency(stackarr[topp]) && topp > -1) {
+                    postfix[temp++] = pop();
+                }
+                push(el);
+            }
+        }
+        else {
+            postfix[temp++] = el;
+        }
+    }
+    while (stackarr[topp] != '@') {     	// Adding character until stackarr[topp] is @
+        postfix[temp++] = pop();
+    }
+    var st = "";                            // String to store postfix expression
+    for (var i = 0; i < postfix.length; i++)
+        st += postfix[i];
+
+    // To print postfix expression in console
+    console.log(st)
 }
 
-InfixtoPostfix((1+2)*3)
+InfixtoPostfix((1 + 2) * 3)
 
 
 
@@ -697,11 +697,11 @@ function palindromeChecker(word) {
         if (q.dataStore.length == 0) {
             console.log("PALINDROME!!")
             break;
-        }else if (q.front() != q.back()) {
+        } else if (q.front() != q.back()) {
             console.log("NOT A PALINDROME")
         }
     }
-    }
+}
 
 // test program
 var q = new Dequeue();
@@ -719,9 +719,15 @@ palindromeChecker(word_2);
 3. Modify the priority queue example from Example 5-5 so that the higher-priority
 elements have higher numbers rather than lower numbers. Test your implementa‐
 tion with the example in the chapter.   */
-
-
-
+function dequeue() {
+    var priority = this.dataStore[0].code;
+    for (var i = 1; i < this.dataStore.length; ++i) {
+        if (this.dataStore[i].code > priority) {
+            priority = i;
+        }
+    }
+    return this.dataStore.splice(priority, 1);
+}
 
 
 
@@ -733,6 +739,101 @@ ities:
 a. Patient enters ED.
 b. Patient is seen by doctor.
 c. Display list of patients waiting to be seen. */
+class Queue {
+    constructor() {
+        this.dataStore = [];
+        this.enqueue = enqueue;
+        this.dequeue = dequeue;
+        this.front = front;
+        this.back = back;
+        this.toString = toString;
+        this.empty = empty;
+    }
+}
+function enqueue(element) {
+    this.dataStore.push(element);
+}
+function dequeue() {
+    var priority = this.dataStore[0].code;
+    for (var i = 1; i < this.dataStore.length; ++i) {
+        if (this.dataStore[i].code > priority) {
+            priority = i;
+        }
+    }
+    return this.dataStore.splice(priority, 1);
+}
+function front() {
+    return this.dataStore[0];
+}
+function back() {
+    return this.dataStore[this.dataStore.length - 1];
+}
+function toString() {
+    var retStr = "";
+    for (var i = 0; i < this.dataStore.length; ++i) {
+        retStr += this.dataStore[i] + "\n";
+    }
+    return retStr;
+}
+function empty() {
+    if (this.dataStore.length == 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+function Patient(name, code) {
+    this.name = name;
+    this.code = code;
+}
+function toString() {
+    var retStr = "";
+    for (var i = 0; i < this.dataStore.length; ++i) {
+        retStr += this.dataStore[i].name + " code: "
+            + this.dataStore[i].code + "\n";
+    }
+    return retStr;
+}
+
+
+function ed_menu(user_choice) {
+    console.log("Please select from the choices below: \n"
+        + "a. Patient enters ED. \n"
+        + "b. Patient is seen by doctor. \n"
+        + "c. Display list of patients waiting to be seen.")
+    console.log("You selected " + user_choice);
+    if (user_choice == "a") {
+        p = new Patient("Bill", 3);
+        ed.enqueue(p);
+        console.log(p.name + " code:" + p.code);
+    }
+    if (user_choice == "b") {
+        console.log("Patient being seen is: " + seen[0].name);
+    }
+    if (user_choice == "c") {
+        console.log("Patients waiting to be seen:" + ed.toString())
+    }
+}
+
+
+var p = new Patient("Smith", 5);
+var ed = new Queue();
+ed.enqueue(p);
+p = new Patient("Jones", 4);
+ed.enqueue(p);
+p = new Patient("Fehrenbach", 6);
+ed.enqueue(p);
+p = new Patient("Brown", 1);
+ed.enqueue(p);
+p = new Patient("Ingram", 1);
+ed.enqueue(p);
+console.log(ed.toString());
+var seen = ed.dequeue();
+
+ed_menu("c");
+
+
 
 
 
@@ -740,19 +841,35 @@ c. Display list of patients waiting to be seen. */
 /* CHAPTER 6
 
 1. Implement the advance(n) function so that when executed, the current node is
-moved n nodes forward in the list.
+moved n nodes forward in the list.  */
 
+
+
+
+
+/*
 2. Implement the back(n) function so that when executed, the current node is moved
-n spaces backward in the list.
+n spaces backward in the list.  */
 
+
+
+/*
 3. Implement the show() function, which displays the data associated with the current
-node.
+node.   */
 
+
+
+/*
 4. Write a program that uses a singly linked list to keep track of a set of test grades
-entered interactively into the program.
+entered interactively into the program. */
 
-5. Rewrite your solution to Example 6-4 using a doubly linked list.
 
+/*
+5. Rewrite your solution to Example 6-4 using a doubly linked list. */
+
+
+
+/*
 6. According to legend, the first-century Jewish historian Flavius Josephus was about
 to be captured along with a band of 40 compatriots by Roman soldiers during the
 Jewish-Roman War. The Jewish soldiers decided that they preferred suicide to being
@@ -762,7 +879,7 @@ wanted no part of this and quickly calculated where they needed to place themsel
 so they would be the last survivors. Write a program that allows you to place n
 people in a circle and specify that every mth person will be killed. The program
 should determine the number of the last two people left in the circle. Use a circularly
-linked list to solve the problem. 
+linked list to solve the problem.   */
 
 
 
