@@ -74,6 +74,8 @@ console.log("------------------")
 cities.remove("Carlisle")
 cities.display()
 
+findcities = cities.find("Alma")
+console.log(findcities)
 
 
 

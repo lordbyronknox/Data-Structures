@@ -15,7 +15,7 @@ function enqueue(element) {
 function dequeue() {
     var priority = this.dataStore[0].code;
     for (var i = 1; i < this.dataStore.length; ++i) {
-        if (this.dataStore[i].code < priority) {
+        if (this.dataStore[i].code > priority) {
             priority = i;
         }
     }
@@ -56,6 +56,26 @@ function toString() {
 }
 
 
+function ed_menu(user_choice) {
+    console.log("Please select from the choices below: \n"
+     + "a. Patient enters ED. \n"
+     + "b. Patient is seen by doctor. \n"
+     + "c. Display list of patients waiting to be seen.")
+     console.log("You selected " + user_choice);
+     if (user_choice == "a") {
+         p = new Patient("Bill", 3);
+         ed.enqueue(p);
+         console.log(p.name + " code:" + p.code);
+     }
+     if (user_choice == "b") {
+         console.log("Patient being seen is: " + seen[0].name);
+     }
+     if (user_choice == "c") {
+         console.log("Patients waiting to be seen:" + ed.toString())
+     }
+}
+
+
     var p = new Patient("Smith", 5);
     var ed = new Queue();
     ed.enqueue(p);
@@ -69,13 +89,16 @@ function toString() {
     ed.enqueue(p);
     console.log(ed.toString());
     var seen = ed.dequeue();
-    console.log("Patient being treated: " + seen[0].name);
+    // console.log("Patient being treated: " + seen[0].name);
     // console.log("Patients waiting to be seen: ")
     // console.log(ed.toString());
-    // // another round
+    // another round
+
+ ed_menu("c");
+
     // var seen = ed.dequeue();
     // console.log("Patient being treated: " + seen[0].name);
     // console.log("Patients waiting to be seen: ")
     // console.log(ed.toString());
     // var seen = ed.dequeue();
-    // console.log("Patient being treated: " + seen[0].name);
+    // // console.log("Patient being treated: " + seen[0].name);
